@@ -13,17 +13,11 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Add Chrome as a user
-RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \
-    && mkdir -p /home/chrome && chown -R chrome:chrome /home/chrome
-
 RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
 COPY . /usr/src/app
-
-USER chrome
 
 CMD [ "npm", "start" ]
 
